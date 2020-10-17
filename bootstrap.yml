@@ -1,0 +1,15 @@
+---
+- hosts: localhost
+  vars:
+    gotroot: '{{ ansible_effective_user_id == 0 }}'
+  tasks:
+    # TODO support not only Fedora
+    - include_vars: 'vars.{{ ansible_distribution | lower }}.yml'
+    - block:
+      - include_tasks: 'tasks.{{ ansible_distribution | lower }}.yml'
+      - package:
+          name: '{{ repopkgs }}'
+      - package:
+          name: '{{ pkgs }}'
+          enablerepo: '{{ repos2enable | default(omit) }}'
+      become: '{{ not gotroot }}'

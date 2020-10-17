@@ -1,1 +1,4 @@
 Some stuff required to bootstrap a workstation
+
+`ansible-playbook bootstrap.yml`
+`ansible-playbook bootstrap.yml --become-method=su`
