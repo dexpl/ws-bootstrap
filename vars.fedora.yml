@@ -12,10 +12,13 @@ pkgs:
   - firefox
   - jq
   - git
-  - gmrun
   - hub
   - lightdm-gtk
   - openbox
+  - pavucontrol
+  - pmount
+  - remmina-plugins-rdp
+  - samba-client
   - telegram-desktop
   - thunderbird
   - vim-ansible
@@ -23,4 +26,7 @@ pkgs:
   - vim-perl-support
   - vim-X11
   - xclip
+  - xfce4-appfinder
+  - xfce4-panel
+  - xfce4-terminal
   - youtube-dl
