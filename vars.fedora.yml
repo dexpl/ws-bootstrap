@@ -7,15 +7,18 @@ repopkgs:
 repos2enable: '*testing'
 pkgs:
   - catdoc
+  - copr-cli
   - discount
   - elinks
   - firefox
-  - jq
   - git
   - hub
+  - jq
   - lightdm-gtk
   - openbox
+  - patch
   - pavucontrol
+  - perl-XML-XPath
   - pmount
   - remmina-plugins-rdp
   - samba-client
@@ -27,6 +30,14 @@ pkgs:
   - vim-X11
   - xclip
   - xfce4-appfinder
+  - xfce4-battery-plugin
+  - xfce4-notifyd
   - xfce4-panel
+  - xfce4-power-manager
+  - xfce4-pulseaudio-plugin
+  - xfce4-screenshooter-plugin
+  - xfce4-sensors-plugin
   - xfce4-terminal
+  - xfce4-weather-plugin
+  - xfce4-xkb-plugin
   - youtube-dl
