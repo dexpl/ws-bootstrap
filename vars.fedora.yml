@@ -1,9 +1,24 @@
+# to be added with yum_repository
+extrarepos:
+  - name: teams
+    baseurl: https://packages.microsoft.com/yumrepos/ms-teams
+    gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+  - name: AnyDesk Fedora - stable
+    baseurl: http://rpm.anydesk.com/fedora/$basearch/
+    gpgkey: https://keys.anydesk.com/repos/RPM-GPG-KEY
+# to be installed from extrarepos
+extrapkgs:
+  - teams
+# to be added with rpm_key
 gpgkeys:
   - 'https://mirrors.rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-{{ ansible_distribution_major_version }}'
   - 'https://mirrors.rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-{{ ansible_distribution_major_version }}'
+  - 'http://linux.teamviewer.com/pubkey/currentkey.asc'
 repopkgs:
   - 'https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm'
   - 'https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_major_version }}.noarch.rpm'
+  - https://download.teamviewer.com/download/linux/teamviewer.x86_64.rpm
+# to be temporarily enabled during package installation
 repos2enable: '*testing'
 pkgs:
   - catdoc

@@ -12,4 +12,15 @@
       - package:
           name: '{{ pkgs }}'
           enablerepo: '{{ repos2enable | default(omit) }}'
+      - yum_repository:
+          name: '{{ item.name }}'
+          description: '{{ item.description | default(item.name) }}'
+          baseurl: '{{ item.baseurl | default(omit) }}'
+          metalink: '{{ item.metalink | default(omit) }}'
+          mirrorlist: '{{ item.mirrorlist | default(omit) }}'
+          gpgcheck: '{{ item.gpgkey is defined }}'
+          gpgkey: '{{ item.gpgkey | default(omit) }}'
+        loop: '{{ extrarepos | default([]) }}'
+      - package:
+          name: '{{ extrapkgs | default([]) }}'
       become: '{{ not gotroot }}'
