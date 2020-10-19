@@ -15,3 +15,6 @@
       - package:
           name: '{{ extrapkgs | default([]) }}'
       become: '{{ not gotroot }}'
+    # Employer-specific tasks (if any)
+    - include_tasks: '{{ item }}'
+      loop: '{{ lookup("fileglob", "tasks.emp.*.yml") }}'
