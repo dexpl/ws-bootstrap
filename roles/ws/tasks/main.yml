@@ -1,0 +1,16 @@
+# TODO support not only Fedora
+- include_vars: '{{ ansible_distribution | lower }}.yml'
+- block:
+  - include_tasks: '{{ ansible_distribution | lower }}.yml'
+  - package:
+      name: '{{ repopkgs }}'
+  - package:
+      name: '{{ pkgs }}'
+      enablerepo: '{{ repos2enable | default(omit) }}'
+  - package:
+      name: '{{ extrapkgs | default([]) }}'
+  become: '{{ not gotroot }}'
+# Employer-specific tasks (if any)
+# TODO right way
+- include_tasks: '{{ item }}'
+  loop: '{{ lookup("fileglob", "emp/*.yml", wantlist="yes") }}'
