@@ -16,10 +16,12 @@ gpgkeys:
   - 'https://mirrors.rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-{{ ansible_distribution_major_version }}'
   - 'https://mirrors.rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-{{ ansible_distribution_major_version }}'
   - 'http://linux.teamviewer.com/pubkey/currentkey.asc'
+  - 'https://repo.skype.com/data/SKYPE-GPG-KEY'
 repopkgs:
   - 'https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm'
   - 'https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_major_version }}.noarch.rpm'
   - https://download.teamviewer.com/download/linux/teamviewer.x86_64.rpm
+  - https://go.skype.com/skypeforlinux-64.rpm
 # to be temporarily enabled during package installation
 repos2enable: '*testing'
 pkgs:
