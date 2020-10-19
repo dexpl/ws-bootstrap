@@ -1,13 +1,15 @@
 # to be added with yum_repository
 extrarepos:
+  - name: anydesk
+    description: AnyDesk Fedora - stable
+    baseurl: http://rpm.anydesk.com/fedora/$basearch/
+    gpgkey: https://keys.anydesk.com/repos/RPM-GPG-KEY
   - name: teams
     baseurl: https://packages.microsoft.com/yumrepos/ms-teams
     gpgkey: https://packages.microsoft.com/keys/microsoft.asc
-  - name: AnyDesk Fedora - stable
-    baseurl: http://rpm.anydesk.com/fedora/$basearch/
-    gpgkey: https://keys.anydesk.com/repos/RPM-GPG-KEY
 # to be installed from extrarepos
 extrapkgs:
+  - anydesk
   - teams
 # to be added with rpm_key
 gpgkeys:
@@ -21,6 +23,15 @@ repopkgs:
 # to be temporarily enabled during package installation
 repos2enable: '*testing'
 pkgs:
+  - NetworkManager-fortisslvpn-gnome
+  - NetworkManager-l2tp-gnome
+  - NetworkManager-libreswan-gnome
+  - NetworkManager-openconnect-gnome
+  - NetworkManager-openvpn-gnome
+  - NetworkManager-pptp-gnome
+  - NetworkManager-ssh-gnome
+  - NetworkManager-strongswan-gnome
+  - NetworkManager-vpnc-gnome
   - catdoc
   - copr-cli
   - discount
@@ -34,15 +45,16 @@ pkgs:
   - patch
   - pavucontrol
   - perl-XML-XPath
+  - perl-perlfaq
   - pmount
   - remmina-plugins-rdp
   - samba-client
   - telegram-desktop
   - thunderbird
+  - vim-X11
   - vim-ansible
   - vim-nerdtree
   - vim-perl-support
-  - vim-X11
   - xclip
   - xfce4-appfinder
   - xfce4-battery-plugin
