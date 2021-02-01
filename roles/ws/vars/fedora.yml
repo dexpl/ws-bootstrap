@@ -47,7 +47,9 @@ pkgs:
   - openbox
   - patch
   - pavucontrol
+  - perl-LWP-Protocol-https
   - perl-XML-XPath
+  - perl-libwww-perl
   - perl-perlfaq
   - pmount
   - remmina-plugins-rdp
