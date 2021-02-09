@@ -3,4 +3,10 @@
   vars:
     gotroot: '{{ ansible_effective_user_id == 0 }}'
   roles:
-    - ws
+    - role: vk
+      tags:
+        - never
+        - vk
+    - role: ws
+      tags:
+        - ws

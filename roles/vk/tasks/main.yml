@@ -1,0 +1,10 @@
+- name: Download VK messenger
+  get_url:
+    url: '{{ vk_pkg_url % (ansible_system | lower, vk_arch[ansible_architecture], "master", vk_pkg_fmt[ansible_pkg_mgr]) }}'
+    dest: '{{ lookup("env", "TEMP") or lookup("env", "TMPDIR") or "/tmp" }}/'
+  register: vk_pkg
+- name: Install VK messenger
+  package:
+    name: '{{ vk_pkg.dest }}'
+    disable_gpg_check: yes
+  become: '{{ ansible_effective_user_id != 0 }}'

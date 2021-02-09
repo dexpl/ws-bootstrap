@@ -1,0 +1,8 @@
+# https://desktop.userapi.com/get_last?platform=linux64&branch=master&packet=rpm
+vk_pkg_url: https://desktop.userapi.com/get_last?platform=%s%d&branch=%s&packet=%s
+vk_arch:
+  x86_64: 64
+vk_pkg_fmt:
+  apt: deb
+  dnf: rpm
+  yum: rpm
