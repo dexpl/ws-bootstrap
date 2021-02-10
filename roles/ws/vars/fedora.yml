@@ -45,6 +45,7 @@ pkgs:
   - openbox
   - patch
   - pavucontrol
+  - perl-CPAN
   - perl-LWP-Protocol-https
   - perl-XML-XPath
   - perl-libwww-perl
