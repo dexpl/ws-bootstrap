@@ -7,4 +7,4 @@
   package:
     name: '{{ vk_pkg.dest }}'
     disable_gpg_check: yes
-  become: '{{ ansible_effective_user_id != 0 }}'
+  become: '{{ not got_root }}'
