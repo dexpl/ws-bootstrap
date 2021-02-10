@@ -1,0 +1,10 @@
+- block:
+  - name: Add zoom GPG key
+    rpm_key:
+      key: https://zoom.us/linux/download/pubkey
+  - name: Install zoom package
+    # TODO try to install non-latest (given? hardcoded?) version if this task fails
+    # it will definitely fail on i?86
+    package:
+      name: 'https://zoom.us/client/latest/zoom_{{ ansible_architecture }}.rpm'
+  become: '{{ not got_root }}'

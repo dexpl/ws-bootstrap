@@ -7,6 +7,10 @@
       tags:
         - never
         - vk
+    - role: zoom
+      tags:
+        - never
+        - zoom
     - role: ws
       tags:
         - ws
