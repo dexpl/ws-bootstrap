@@ -9,7 +9,7 @@
       enablerepo: '{{ repos2enable | default(omit) }}'
   - package:
       name: '{{ extrapkgs | default([]) }}'
-  become: '{{ not gotroot }}'
+  become: '{{ not got_root }}'
 # Employer-specific tasks (if any)
 # TODO right way
 - include_tasks: '{{ item }}'

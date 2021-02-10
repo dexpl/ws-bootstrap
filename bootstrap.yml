@@ -1,7 +1,7 @@
 ---
 - hosts: localhost
   vars:
-    gotroot: '{{ ansible_effective_user_id == 0 }}'
+    got_root: '{{ ansible_effective_user_id == 0 }}'
   roles:
     - role: vk
       tags:
