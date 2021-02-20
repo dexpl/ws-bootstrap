@@ -1,0 +1,10 @@
+# vi:ft=yaml.ansible
+---
+- hosts: all
+  vars:
+    current_user: '{{ lookup("env", "HOME") }}'
+  tasks:
+  - authorized_key:
+      user: '{{ username | default(user) | default(ansible_user) | default(current_user) }}'
+      key: '{{ key | default(lookup("file", current_user ~ "/.ssh/id_rsa.pub")) }}'
+      comment: '{{ fio | default(lookup("pipe", "getent passwd " ~ current_user ~ " | cut -d : -f 5")) | default(omit) }}'
