@@ -1,0 +1,1 @@
+projects_dir: "{{ lookup('env', 'HOME') }}/projects"

@@ -14,3 +14,11 @@
 # TODO right way
 - include_tasks: '{{ item }}'
   loop: '{{ lookup("fileglob", "emp/*.yml", wantlist="yes") }}'
+- block:
+  - name: Clone remote git repos
+    git:
+      repo: '{{ item }}'
+      dest: '{{ projects_dir }}/{{ (item | basename | splitext)[0] }}'
+    loop: '{{ gitrepos }}'
+    tags:
+      - gitrepos
