@@ -1,0 +1,6 @@
+---
+- hosts: localhost
+  vars:
+    got_root: '{{ ansible_effective_user_id == 0 }}'
+  roles:
+    - role: skype

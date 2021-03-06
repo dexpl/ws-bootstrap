@@ -3,6 +3,10 @@
   vars:
     got_root: '{{ ansible_effective_user_id == 0 }}'
   roles:
+    - role: skype
+      tags:
+        - never
+        - skype
     - role: vk
       tags:
         - never
