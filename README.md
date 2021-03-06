@@ -1,6 +1,6 @@
 Some stuff required to bootstrap a workstation
 
-`ansible-playbook bootstrap.yml`  
+`ansible-playbook bootstrap.yml` or just `make` if you're feelin' lucky  
 `ansible-playbook bootstrap.yml --become-method=su`  
 `ansible-playbook bootstrap.yml --become-method=su --tags vk` to install VK messenger  
 `ansible-playbook bootstrap.yml --become-method=su --tags zoom` to install zoom video conf. client  
