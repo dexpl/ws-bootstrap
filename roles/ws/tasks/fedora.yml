@@ -1,7 +1,16 @@
-- rpm_key:
+- name: Remove modularity repos
+  package:
+    name: fedora-repos-modular
+    state: absent
+- include_tasks: rpmfusion.yml
+  tags:
+    - rpmfusion
+- name: Add repository GPG keys
+  rpm_key:
     key: '{{ item }}'
   loop: '{{ gpgkeys }}'
-- yum_repository:
+- name: Add extra repositories
+  yum_repository:
     name: '{{ item.name }}'
     description: '{{ item.description | default(item.name) }}'
     baseurl: '{{ item.baseurl | default(omit) }}'
