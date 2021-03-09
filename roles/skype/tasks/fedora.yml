@@ -2,9 +2,13 @@
   - name: Add Skype GPG key
     rpm_key:
       key: https://repo.skype.com/data/SKYPE-GPG-KEY
-  - name: Install skype
+  - name: Install latest skype
     package:
-      # The latest version is currently non-installable due to missing deps.
-      #name: https://go.skype.com/skypeforlinux-64.rpm
-      name: 'https://repo.skype.com/rpm/stable/skypeforlinux_8.68.0.100-1.{{ ansible_architecture }}.rpm'
+      name: https://go.skype.com/skypeforlinux-64.rpm
+    ignore_errors: yes
+    register: skype_latest
+  - name: Install known good if latest is non-installable
+    package:
+      name: https://repo.skype.com/rpm/stable/skypeforlinux_8.68.0.100-1.x86_64.rpm
+    when: skype_latest.failed
   become: '{{ not got_root }}'

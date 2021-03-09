@@ -1,2 +1,3 @@
+# TODO gracefully fail on non-amd64 arches
 # TODO support not only Fedora
 - include_tasks: '{{ ansible_distribution | lower }}.yml'
