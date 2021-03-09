@@ -1,8 +1,11 @@
 # TODO support not only Fedora
-- include_vars: '{{ ansible_distribution | lower }}.yml'
+- name: Include distro-specific vars
+  include_vars: '{{ ansible_distribution | lower }}.yml'
 - block:
-  - include_tasks: '{{ ansible_distribution | lower }}.yml'
-  - package:
+  - name: Include distro-specific tasks
+    include_tasks: '{{ ansible_distribution | lower }}.yml'
+  - name: Add extra repositories (via package manager)
+    package:
       name: '{{ repopkgs }}'
   - package:
       name: '{{ pkgs }}'
@@ -11,14 +14,18 @@
       name: '{{ extrapkgs | default([]) }}'
   become: '{{ not got_root }}'
 # Employer-specific tasks (if any)
-# TODO right way
 - include_tasks: '{{ item }}'
-  loop: '{{ lookup("fileglob", "emp/*.yml", wantlist="yes") }}'
+  loop: '{{ query("fileglob", "emp/*.yml") }}'
 - block:
+  - name: Make room for git repos
+    file:
+      name: '{{ projects_dir }}'
+      state: directory
   - name: Clone remote git repos
     git:
       repo: '{{ item }}'
       dest: '{{ projects_dir }}/{{ (item | basename | splitext)[0] }}'
+      accept_hostkey: yes
     loop: '{{ gitrepos }}'
-    tags:
-      - gitrepos
+  tags:
+    - gitrepos

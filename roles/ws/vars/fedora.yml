@@ -13,15 +13,11 @@ extrapkgs:
   - teams
 # to be added with rpm_key
 gpgkeys:
-  - 'https://mirrors.rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora'
-  - 'https://mirrors.rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora'
-  - 'http://linux.teamviewer.com/pubkey/currentkey.asc'
-  - 'https://repo.skype.com/data/SKYPE-GPG-KEY'
+  - http://linux.teamviewer.com/pubkey/currentkey.asc
 repopkgs:
   - https://download.teamviewer.com/download/linux/teamviewer.x86_64.rpm
-  - https://go.skype.com/skypeforlinux-64.rpm
-# to be temporarily enabled during package installation
-repos2enable: '*testing'
+## to be temporarily enabled during package installation
+#repos2enable: '*testing'
 pkgs:
   - NetworkManager-fortisslvpn-gnome
   - NetworkManager-l2tp-gnome
@@ -38,8 +34,10 @@ pkgs:
   - elinks
   - firefox
   - git
+  - gvfs-fuse
   - hub
   - jq
+  - langpacks-ru
   - libvirt-client
   - lightdm-gtk
   - openbox
@@ -53,10 +51,12 @@ pkgs:
   - pmount
   - remmina-plugins-rdp
   - samba-client
+  - screen
   - telegram-desktop
   - thunderbird
   - vim-X11
   - vim-ansible
+  - vim-default-editor
   - vim-nerdtree
   - vim-perl-support
   - vim-trailing-whitespace
