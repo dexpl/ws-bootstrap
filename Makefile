@@ -1,11 +1,16 @@
-.DEFAULT_GOAL := bootstrap
+roles := $(notdir $(wildcard roles/*))
+mainrole := ws
+# Simple role template
+stemplate := templates/_simple.yml.j2
 
-all:
-	@ansible-playbook bootstrap.yml --tags always,never --list-tasks
+all: bootstrap
 
 bootstrap:
 	@ansible-playbook $@.yml
 
-# TODO DRY somehow
-skype:
+$(roles): %: %.yml
 	@ansible-playbook $@.yml
+
+%.yml: $(stemplate)
+	@ansible localhost -a 'src=$(notdir $<) dest=$@' -e rolename=$(basename $@) -m template
+

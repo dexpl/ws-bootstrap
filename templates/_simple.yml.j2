@@ -1,0 +1,8 @@
+# vi:ft=yaml.ansible
+---
+- hosts: localhost
+  vars:
+    {% raw %}got_root: '{{ ansible_effective_user_id == 0 }}'{% endraw %}
+
+  roles:
+    - role: '{{ rolename }}'
