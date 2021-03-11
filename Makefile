@@ -6,11 +6,14 @@ stemplate := templates/_simple.yml.j2
 all: bootstrap
 
 bootstrap:
-	@ansible-playbook $@.yml
+	ansible-playbook $@.yml
 
 $(roles): %: %.yml
-	@ansible-playbook $@.yml
+	ansible-playbook $@.yml
 
 %.yml: $(stemplate)
-	@ansible localhost -a 'src=$(<F) dest=$@' -e rolename=$* -m template
+	ansible localhost -a 'src=$(<F) dest=$@' -e rolename=$* -m template
 
+.PHONY: bootstrap $(roles)
+
+.SILENT:
