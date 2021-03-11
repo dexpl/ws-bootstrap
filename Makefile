@@ -12,5 +12,5 @@ $(roles): %: %.yml
 	@ansible-playbook $@.yml
 
 %.yml: $(stemplate)
-	@ansible localhost -a 'src=$(notdir $<) dest=$@' -e rolename=$(basename $@) -m template
+	@ansible localhost -a 'src=$(<F) dest=$@' -e rolename=$* -m template
 
