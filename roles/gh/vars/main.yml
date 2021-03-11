@@ -1,0 +1,6 @@
+gh:
+  package: gh
+  repo:
+    name: gh-cli
+    url:
+      dnf: https://cli.github.com/packages/rpm/gh-cli.repo

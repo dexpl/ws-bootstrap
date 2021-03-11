@@ -1,0 +1,29 @@
+- name: Check whether gh is installed
+  package:
+    list: '{{ gh.package }}'
+  register: gh_package
+- block:
+  - name: List enabled repos
+    command: '{{ ansible_pkg_mgr }} -d 0 repolist'
+    args:
+      warn: false
+    register: repos
+  - block:
+    - name: Find what provides PM config manager
+      package:
+        list: '{{ pm_conf_mgr.package }}'
+      register: pm_cm
+    - block:
+      - name: Install the found
+        package:
+          name: '{{ pm_cm.results[0].name }}'
+      - name: Enable gh repo
+        command: '{{ pm_conf_mgr.command }}'
+        args:
+          warn: false
+      - name: Install gh
+        package:
+          name: '{{ gh.package }}'
+      become: '{{ not got_root }}'
+    when: gh.repo.name not in repos.stdout_lines | map("regex_replace", "\s\s*.*")
+  when: gh_package.results | length == 0
