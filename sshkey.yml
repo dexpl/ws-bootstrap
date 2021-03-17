@@ -1,6 +1,7 @@
 # vi:ft=yaml.ansible
 ---
 - hosts: all
+  gather_facts: no
   vars:
     current_user: '{{ lookup("env", "HOME") }}'
   tasks:
