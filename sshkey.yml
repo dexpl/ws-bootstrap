@@ -3,9 +3,16 @@
 - hosts: all
   gather_facts: no
   vars:
-    current_user: '{{ lookup("env", "HOME") }}'
+    current_user: '{{ lookup("env", "USER") }}'
   tasks:
+# Maybe some day…
+#  - local_action:
+#      module: getent
+#      database: passwd
+#      key: '{{ user | default(ansible_user) | default(current_user) }}'
+#  - debug:
+#      var: getent_passwd
   - authorized_key:
       user: '{{ user | default(ansible_user) | default(current_user) }}'
-      key: '{{ key | default(lookup("file", current_user ~ "/.ssh/id_rsa.pub")) }}'
+      key: '{{ lookup("file", key | default(lookup("env", "HOME") ~ "/.ssh/id_rsa.pub")) }}'
       comment: '{{ fio | default(lookup("pipe", "getent passwd " ~ current_user ~ " | cut -d : -f 5")) | default(omit) }}'
