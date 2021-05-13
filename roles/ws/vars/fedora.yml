@@ -1,11 +1,7 @@
 # to be added with yum_repository
 extrarepos: []
-#  - name: teams
-#    baseurl: https://packages.microsoft.com/yumrepos/ms-teams
-#    gpgkey: https://packages.microsoft.com/keys/microsoft.asc
 # to be installed from extrarepos
 extrapkgs: []
-#  - teams
 # to be added with rpm_key
 gpgkeys: []
 repopkgs: []
