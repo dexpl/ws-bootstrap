@@ -1,5 +1,5 @@
 - block:
-  - name: '{{ remove|bool | ternary("Remove", "Add") }} {{ repo.description | default(package + " repo") }}'
+  - name: '{{ remove|bool | ternary("Remove", "Add") }} {{ repo.description | default(package) }} repo'
     yum_repository:
       name: '{{ repo.name | default(package) }}'
       description: '{{ repo.description | default(package) }}'

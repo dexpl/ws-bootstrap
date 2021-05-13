@@ -1,6 +1,6 @@
 package: teams
 repo:
-  description: M$ Teams repo
+  description: M$ Teams
   gpgkey: https://packages.microsoft.com/keys/microsoft.asc
   repo:
     dnf: https://packages.microsoft.com/yumrepos/ms-teams
