@@ -6,7 +6,7 @@
     include_tasks: '{{ ansible_distribution | lower }}.yml'
   - name: Add extra repositories (via package manager)
     package:
-      name: '{{ repopkgs }}'
+      name: '{{ repopkgs | default([]) }}'
   - package:
       name: '{{ pkgs }}'
       enablerepo: '{{ repos2enable | default(omit) }}'

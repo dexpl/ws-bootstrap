@@ -13,9 +13,7 @@ extrapkgs:
 #  - teams
 # to be added with rpm_key
 gpgkeys:
-  - http://linux.teamviewer.com/pubkey/currentkey.asc
 repopkgs:
-  - https://download.teamviewer.com/download/linux/teamviewer.x86_64.rpm
 ## to be temporarily enabled during package installation
 #repos2enable: '*testing'
 pkgs:

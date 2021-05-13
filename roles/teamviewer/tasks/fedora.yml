@@ -1,0 +1,8 @@
+- block:
+  - name: Add Teamviewer GPG key
+    rpm_key:
+      key: http://linux.teamviewer.com/pubkey/currentkey.asc
+  - name: Install latest teamviewer
+    package:
+      name: https://download.teamviewer.com/download/linux/teamviewer.x86_64.rpm
+  become: '{{ not got_root }}'

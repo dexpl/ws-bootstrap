@@ -20,7 +20,7 @@
 - name: Add repository GPG keys
   rpm_key:
     key: '{{ item }}'
-  loop: '{{ gpgkeys }}'
+  loop: '{{ gpgkeys | default([]) }}'
 - name: Add extra repositories
   yum_repository:
     name: '{{ item.name }}'
