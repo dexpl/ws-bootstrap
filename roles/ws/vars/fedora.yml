@@ -41,6 +41,7 @@ pkgs:
   - libvirt-client
   - lightdm-gtk
   - openbox
+  - p7zip-plugins
   - patch
   - pavucontrol
   - perl-CPAN
