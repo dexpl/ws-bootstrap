@@ -1,10 +1,12 @@
 - block:
-  - name: Add zoom GPG key
+  - name: '{{ remove|bool | ternary("Remove", "Add") }} zoom GPG key'
     rpm_key:
       key: https://zoom.us/linux/download/pubkey
-  - name: Install zoom package
+      state: '{{ remove|bool | ternary("absent", "present") }}'
+  - name: '{{ remove|bool | ternary("Remove", "Install") }} zoom package'
     # TODO try to install non-latest (given? hardcoded?) version if this task fails
     # it will definitely fail on i?86
     package:
-      name: 'https://zoom.us/client/latest/zoom_{{ ansible_architecture }}.rpm'
+      name: '{{ remove|bool | ternary("zoom", "https://zoom.us/client/latest/zoom_%s.rpm" % ansible_architecture) }}'
+      state: '{{ remove|bool | ternary("absent", "present") }}'
   become: '{{ not got_root }}'
