@@ -4,13 +4,13 @@ extrarepos:
     description: AnyDesk Fedora - stable
     baseurl: http://rpm.anydesk.com/fedora/$basearch/
     gpgkey: https://keys.anydesk.com/repos/RPM-GPG-KEY
-  - name: teams
-    baseurl: https://packages.microsoft.com/yumrepos/ms-teams
-    gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+#  - name: teams
+#    baseurl: https://packages.microsoft.com/yumrepos/ms-teams
+#    gpgkey: https://packages.microsoft.com/keys/microsoft.asc
 # to be installed from extrarepos
 extrapkgs:
   - anydesk
-  - teams
+#  - teams
 # to be added with rpm_key
 gpgkeys:
   - http://linux.teamviewer.com/pubkey/currentkey.asc
