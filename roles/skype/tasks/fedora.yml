@@ -1,14 +1,16 @@
 - block:
-  - name: Add Skype GPG key
+  - name: '{{ remove|bool | ternary("Remove", "Add") }} Skype GPG key'
     rpm_key:
       key: https://repo.skype.com/data/SKYPE-GPG-KEY
-  - name: Install latest skype
+      state: '{{ remove|bool | ternary("absent", "present") }}'
+  - name: '{{ remove|bool | ternary("Remove", "Install latest") }} skype'
     package:
-      name: https://go.skype.com/skypeforlinux-64.rpm
-    ignore_errors: yes
+      name: '{{ remove|bool | ternary("skype", "https://go.skype.com/skypeforlinux-64.rpm") }}'
+      state: '{{ remove|bool | ternary("absent", "present") }}'
+    ignore_errors: '{{ remove|bool }}'
     register: skype_latest
   - name: Install known good if latest is non-installable
     package:
       name: https://repo.skype.com/rpm/stable/skypeforlinux_8.68.0.100-1.x86_64.rpm
-    when: skype_latest.failed
+    when: skype_latest.failed and not remove|bool
   become: '{{ not got_root }}'
