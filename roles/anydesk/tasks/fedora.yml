@@ -1,12 +1,14 @@
 - block:
-  - name: Add AnyDesk repo
+  - name: '{{ remove|bool | ternary("Remove", "Add") }} {{ repo.description | default(package) }} repo'
     yum_repository:
       name: '{{ repo.name | default(package) }}'
       description: '{{ repo.description }}'
       baseurl: '{{ repo.repo[ansible_pkg_mgr] }}'
       gpgcheck: yes
       gpgkey: '{{ repo.gpgkey }}'
-  - name: Install AnyDesk
+      state: '{{ remove|bool | ternary("absent", "present") }}'
+  - name: '{{ remove|bool | ternary("Remove", "Install") }} {{ package }}'
     package:
       name: '{{ package }}'
+      state: '{{ remove|bool | ternary("absent", "present") }}'
   become: '{{ not got_root }}'
