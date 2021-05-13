@@ -11,7 +11,7 @@
       disable_gpg_check: yes
       state: '{{ remove|bool | ternary("absent", "present") }}'
   # Sometimes there's newer version in a repo
-  - name: Update VK messenger to the lasest version
+  - name: Update VK messenger to the latest version
     package:
       name: '{{ lookup("pipe", "rpm -qp --qf %{name} " + vk_pkg.path) }}'
       state: latest
