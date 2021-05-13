@@ -1,0 +1,19 @@
+- name: Query VK messenger package info
+  uri:
+    url: '{{ vk_pkg_url % (ansible_system | lower, vk_arch[ansible_architecture], "master", vk_pkg_fmt[ansible_pkg_mgr]) }}'
+    dest: '{{ remove|bool | ternary(omit, (lookup("env", "TEMP") or lookup("env", "TMPDIR") or "/tmp") + "/") }}'
+    method: '{{ remove|bool | ternary("HEAD", "GET") }}'
+  register: vk_pkg
+- block:
+  - name: '{{ remove|bool | ternary("Remove", "Install") }} VK messenger'
+    package:
+      name: '{{ remove|bool | ternary(lookup("pipe", "rpm -qp --qf %{name} " + vk_pkg.url), vk_pkg.path) }}'
+      disable_gpg_check: yes
+      state: '{{ remove|bool | ternary("absent", "present") }}'
+  # Sometimes there's newer version in a repo
+  - name: Update VK messenger to the lasest version
+    package:
+      name: '{{ lookup("pipe", "rpm -qp --qf %{name} " + vk_pkg.path) }}'
+      state: latest
+    when: not remove|bool
+  become: '{{ not got_root }}'
