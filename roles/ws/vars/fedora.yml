@@ -1,21 +1,14 @@
 # to be added with yum_repository
-extrarepos:
-  - name: anydesk
-    description: AnyDesk Fedora - stable
-    baseurl: http://rpm.anydesk.com/fedora/$basearch/
-    gpgkey: https://keys.anydesk.com/repos/RPM-GPG-KEY
+extrarepos: []
 #  - name: teams
 #    baseurl: https://packages.microsoft.com/yumrepos/ms-teams
 #    gpgkey: https://packages.microsoft.com/keys/microsoft.asc
 # to be installed from extrarepos
-extrapkgs:
-  - anydesk
+extrapkgs: []
 #  - teams
 # to be added with rpm_key
-gpgkeys:
-repopkgs:
-## to be temporarily enabled during package installation
-#repos2enable: '*testing'
+gpgkeys: []
+repopkgs: []
 pkgs:
   - NetworkManager-fortisslvpn-gnome
   - NetworkManager-l2tp-gnome

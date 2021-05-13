@@ -1,0 +1,12 @@
+- block:
+  - name: Add AnyDesk repo
+    yum_repository:
+      name: '{{ repo.name | default(package) }}'
+      description: '{{ repo.description }}'
+      baseurl: '{{ repo.repo[ansible_pkg_mgr] }}'
+      gpgcheck: yes
+      gpgkey: '{{ repo.gpgkey }}'
+  - name: Install AnyDesk
+    package:
+      name: '{{ package }}'
+  become: '{{ not got_root }}'

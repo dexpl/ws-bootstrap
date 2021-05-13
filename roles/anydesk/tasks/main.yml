@@ -1,0 +1,6 @@
+# TODO support not only Fedora
+# Distro-specific vars inclusion is better be done inside distro-specific tasks, not before them
+# - name: Include distro-specific vars
+#   include_vars: '{{ ansible_distribution | lower }}.yml'
+- name: Include distro-specific tasks
+  include_tasks: '{{ ansible_distribution | lower }}.yml'

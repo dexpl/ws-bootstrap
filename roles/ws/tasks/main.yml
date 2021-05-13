@@ -9,6 +9,7 @@
       name: '{{ repopkgs | default([]) }}'
   - package:
       name: '{{ pkgs }}'
+      state: latest
       enablerepo: '{{ repos2enable | default(omit) }}'
   - package:
       name: '{{ extrapkgs | default([]) }}'

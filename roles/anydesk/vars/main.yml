@@ -1,0 +1,6 @@
+package: anydesk
+repo:
+  description: 'AnyDesk {{ ansible_distribution }} - stable'
+  gpgkey: https://keys.anydesk.com/repos/RPM-GPG-KEY
+  repo:
+    dnf: http://rpm.anydesk.com/fedora/$basearch/
