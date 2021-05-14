@@ -1,4 +1,4 @@
 gitrepos:
   - git@github.com:dexpl/dotfiles.git
   - git@github.com:dexpl/miscscripts.git
-#  - git@github.com:dexpl/ws-bootstrap.git
+  - git@github.com:dexpl/ws-bootstrap.git

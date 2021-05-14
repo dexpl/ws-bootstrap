@@ -27,6 +27,8 @@
       repo: '{{ item }}'
       dest: '{{ projects_dir }}/{{ (item | basename | splitext)[0] }}'
       accept_hostkey: yes
+      # setting update to yes overwrites local unpushed commits
+      update: no
     loop: '{{ gitrepos }}'
   tags:
     - gitrepos
