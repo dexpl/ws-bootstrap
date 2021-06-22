@@ -1,9 +1,17 @@
 # TODO support not only Fedora
 - name: Include distro-specific vars
-  include_vars: '{{ ansible_distribution | lower }}.yml'
+  include_vars: '{{ item }}'
+  with_first_found:
+    - files:
+        - '{{ ansible_distribution | lower }}.yml'
+      skip: true
 - block:
   - name: Include distro-specific tasks
-    include_tasks: '{{ ansible_distribution | lower }}.yml'
+    include_tasks: '{{ item }}'
+    with_first_found:
+      - files:
+          - '{{ ansible_distribution | lower }}.yml'
+        skip: true
   - name: Add extra repositories (via package manager)
     package:
       name: '{{ repopkgs | default([]) }}'

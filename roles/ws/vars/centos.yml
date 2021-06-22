@@ -1,0 +1,45 @@
+# to be added with yum_repository
+extrarepos: []
+# to be installed from extrarepos
+extrapkgs: []
+# to be added with rpm_key
+gpgkeys: []
+repopkgs:
+  - epel-release
+pkgs:
+  - elinks
+  - firefox
+  - git
+  - gvfs-fuse
+  - jq
+  - libvirt-client
+  - lightdm
+  - openbox
+  - p7zip-plugins
+  - patch
+  - perl-CPAN
+  - perl-LWP-Protocol-https
+  - perl-XML-XPath
+  - perl-libwww-perl
+  - pmount
+  - samba-client
+  - screen
+  - vim-X11
+  - vim-ansible
+  - vim-trailing-whitespace
+  - virt-manager
+  - virt-viewer
+  - xclip
+  - xfce4-appfinder
+  - xfce4-battery-plugin
+  - xfce4-notifyd
+  - xfce4-panel
+  - xfce4-power-manager
+  - xfce4-pulseaudio-plugin
+  - xfce4-screenshooter-plugin
+  - xfce4-sensors-plugin
+  - xfce4-terminal
+  - xfce4-weather-plugin
+  - xfce4-xkb-plugin
+  - youtube-dl
+  - zathura-plugins-all
