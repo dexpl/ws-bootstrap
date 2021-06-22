@@ -24,7 +24,7 @@
   become: '{{ not got_root }}'
 # Employer-specific tasks (if any)
 - include_tasks: '{{ item }}'
-  loop: '{{ query("fileglob", "emp/*.yml") }}'
+  with_fileglob: 'emp/*.yml'
 - block:
   - name: Make room for git repos
     file:
