@@ -1,0 +1,14 @@
+- block:
+  - name: Install COPR plugin for the package manager
+    package:
+      name: dnf-command(copr)
+  - name: Enable COPR repos
+    shell:
+      cmd: dnf copr list --enabled | grep -Fwe {{ repo }} || dnf -d 0 -y copr enable {{ repo }}
+      warn: false
+    loop: '{{ coprrepos }}'
+    loop_control:
+      loop_var: repo
+    register: repos
+    changed_when: repo not in repos.stdout
+  become: '{{ not got_root }}'

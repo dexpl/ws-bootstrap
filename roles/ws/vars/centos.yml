@@ -4,6 +4,9 @@ extrarepos: []
 extrapkgs: []
 # to be added with rpm_key
 gpgkeys: []
+# to be added with dnf copr enable
+coprrepos:
+  -  dexpl/wannabe-epel
 repopkgs:
   - epel-release
 pkgs:
@@ -26,6 +29,7 @@ pkgs:
   - screen
   - vim-X11
   - vim-ansible
+  - vim-nerdtree
   - vim-trailing-whitespace
   - virt-manager
   - virt-viewer
