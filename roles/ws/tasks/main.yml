@@ -19,11 +19,12 @@
       name: '{{ pkgs }}'
       state: latest
       enablerepo: '{{ repos2enable | default(omit) }}'
+      update_cache: yes
   - package:
       name: '{{ extrapkgs | default([]) }}'
   become: '{{ not got_root }}'
-# Employer-specific tasks (if any)
-- include_tasks: '{{ item }}'
+- name: Employer-specific tasks (if any)
+  include_tasks: '{{ item }}'
   with_fileglob: 'emp/*.yml'
 - block:
   - name: Make room for git repos
