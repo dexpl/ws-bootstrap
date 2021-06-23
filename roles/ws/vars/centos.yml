@@ -22,6 +22,7 @@ pkgs:
   - openbox
   - p7zip-plugins
   - patch
+  - pciutils
   - perl-CPAN
   - perl-HTML-Tree
   - perl-LWP-Protocol-https
@@ -30,6 +31,7 @@ pkgs:
   - pmount
   - samba-client
   - screen
+  - usbutils
   - vim-X11
   - vim-ansible
   - vim-nerdtree

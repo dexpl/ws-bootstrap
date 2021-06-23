@@ -31,6 +31,7 @@ pkgs:
   - p7zip-plugins
   - patch
   - pavucontrol
+  - pciutils
   - perl-CPAN
   - perl-Net-DBus
   - perl-LWP-Protocol-https
@@ -43,6 +44,7 @@ pkgs:
   - screen
   - telegram-desktop
   - thunderbird
+  - usbutils
   - vim-X11
   - vim-ansible
   - vim-default-editor
