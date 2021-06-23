@@ -1,3 +1,7 @@
 # TODO gracefully fail on non-amd64 arches
 # TODO support not only Fedora
-- include_tasks: '{{ ansible_distribution | lower }}.yml'
+- include_tasks: '{{ item }}'
+  with_first_found:
+    - files:
+        - '{{ ansible_distribution | lower }}.yml'
+      skip: true
