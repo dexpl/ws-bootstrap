@@ -3,10 +3,15 @@
     rpm_key:
       key: https://zoom.us/linux/download/pubkey
       state: '{{ remove|bool | ternary("absent", "present") }}'
-  - name: '{{ remove|bool | ternary("Remove", "Install") }} zoom package'
-    # TODO try to install non-latest (given? hardcoded?) version if this task fails
+  - name: '{{ remove|bool | ternary("Remove", "Install latest") }} zoom package'
+    # TODO try to install non-latest (given? hardcoded?) version if all else fails
     # it will definitely fail on i?86
     package:
-      name: '{{ remove|bool | ternary("zoom", "https://zoom.us/client/latest/zoom_%s.rpm" % ansible_architecture) }}'
-      state: '{{ remove|bool | ternary("absent", "present") }}'
+      name: zoom
+      state: '{{ remove|bool | ternary("absent", "latest") }}'
+  rescue:
+  - name: Install zoom package
+    package:
+      name: '{{ "https://zoom.us/client/latest/zoom_%s.rpm" % ansible_architecture }}'
+    when: not remove|bool
   become: '{{ not got_root }}'
