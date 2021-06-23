@@ -10,5 +10,5 @@
   - name: '{{ remove|bool | ternary("Remove", "Install") }} {{ package }}'
     package:
       name: '{{ package }}'
-      state: '{{ remove|bool | ternary("absent", "present") }}'
+      state: '{{ remove|bool | ternary("absent", "latest") }}'
   become: '{{ not got_root }}'
