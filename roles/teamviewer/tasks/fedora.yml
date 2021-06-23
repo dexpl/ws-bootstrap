@@ -5,6 +5,11 @@
       state: '{{ remove|bool | ternary("absent", "present") }}'
   - name: '{{ remove|bool | ternary("Remove", "Install latest") }} teamviewer'
     package:
-      name: '{{ remove|bool | ternary("teamviewer", "https://download.teamviewer.com/download/linux/teamviewer.x86_64.rpm") }}'
-      state: '{{ remove|bool | ternary("absent", "present") }}'
+      name: teamviewer
+      state: '{{ remove|bool | ternary("absent", "latest") }}'
+  rescue:
+  - name: Install teamviewer
+    package:
+      name: https://download.teamviewer.com/download/linux/teamviewer.x86_64.rpm
+    when: not remove|bool
   become: '{{ not got_root }}'
