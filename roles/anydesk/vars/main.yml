@@ -4,3 +4,4 @@ repo:
   gpgkey: https://keys.anydesk.com/repos/RPM-GPG-KEY
   repo:
     dnf: http://rpm.anydesk.com/fedora/$basearch/
+    yum: http://rpm.anydesk.com/fedora/$basearch/
