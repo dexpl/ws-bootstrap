@@ -23,6 +23,7 @@ pkgs:
   - p7zip-plugins
   - patch
   - perl-CPAN
+  - perl-HTML-Tree
   - perl-LWP-Protocol-https
   - perl-XML-XPath
   - perl-libwww-perl
