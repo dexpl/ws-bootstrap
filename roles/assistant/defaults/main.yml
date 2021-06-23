@@ -1,2 +1,3 @@
+remove: no
 systemwide: '{{ got_root }}'
 as_unarchive_dir: '{{ systemwide | ternary("/opt", ansible_env["HOME"]) }}'
