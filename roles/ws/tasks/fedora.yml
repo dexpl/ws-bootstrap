@@ -1,6 +1,6 @@
-- name: Remove modularity repos
+- name: Cut the crap
   package:
-    name: fedora-repos-modular
+    name: '{{ useless_crap | default([]) }}'
     state: absent
 - block:
   - name: Install distribution GPG keys
