@@ -1,0 +1,6 @@
+- block:
+  - name: '{{ remove|bool | ternary("Remove", "Install latest") }} teamviewer'
+    package:
+      name: '{{ remove|bool | ternary("assistant", as_urls.rpm) }}'
+      state: '{{ remove|bool | ternary("absent", "present") }}'
+  become: '{{ not got_root }}'

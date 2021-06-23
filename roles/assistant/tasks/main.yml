@@ -1,0 +1,8 @@
+# TODO support not only Linux
+- name: Include system-specific tasks
+  include_tasks: '{{ item }}'
+  with_first_found:
+    - files:
+        - '{{ ansible_distribution | lower }}.yml'
+        - '{{ ansible_system | lower }}.yml'
+      skip: true
