@@ -4,3 +4,4 @@ repo:
   gpgkey: https://packages.microsoft.com/keys/microsoft.asc
   repo:
     dnf: https://packages.microsoft.com/yumrepos/ms-teams
+    yum: https://packages.microsoft.com/yumrepos/ms-teams
