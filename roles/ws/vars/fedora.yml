@@ -32,6 +32,7 @@ pkgs:
   - patch
   - pavucontrol
   - perl-CPAN
+  - perl-Net-DBus
   - perl-LWP-Protocol-https
   - perl-XML-XPath
   - perl-libwww-perl
