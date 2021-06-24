@@ -11,4 +11,5 @@
     package:
       name: '{{ package }}'
       state: '{{ remove|bool | ternary("absent", "present") }}'
+      update_cache: yes
   become: '{{ not got_root }}'
