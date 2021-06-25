@@ -21,6 +21,7 @@ pkgs:
   - lightdm
   - openbox
   - p7zip-plugins
+  - parted
   - patch
   - pciutils
   - perl-CPAN
