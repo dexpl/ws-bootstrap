@@ -31,6 +31,7 @@ pkgs:
   - pmount
   - samba-client
   - screen
+  - setxkbmap
   - usbutils
   - vim-X11
   - vim-ansible

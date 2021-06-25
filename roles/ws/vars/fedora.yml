@@ -46,6 +46,7 @@ pkgs:
   - remmina-plugins-rdp
   - samba-client
   - screen
+  - setxkbmap
   - telegram-desktop
   - thunderbird
   - usbutils
