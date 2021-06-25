@@ -9,6 +9,6 @@
 - name: '{{ "%s %s %s PATH" % remove|bool | ternary(("Remove", as_main_binary, "from"), ("Add", as_main_binary, "to")) }}'
   file:
     src: '{{ remove|bool | ternary(omit, as_main_binary) }}'
-    dest: '{{ as_main_binary }}'
+    dest: /usr/local/bin/assistant
     state: '{{ remove|bool | ternary("absent", "link") }}'
   when: systemwide
