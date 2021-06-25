@@ -1,11 +1,5 @@
-- block:
-  - name: '{{ remove|bool | ternary("Remove", "Install latest") }} teamviewer'
-    package:
-      name: '{{ remove|bool | ternary("assistant", as_urls.rpm) }}'
-      state: '{{ remove|bool | ternary("absent", "present") }}'
-  - name: '{{ "%s /opt/assistant/bin/assistant %s system PATH" % remove|bool | ternary(("Remove", "from"), ("Add", "to")) }}'
-    file:
-      src: '{{ remove|bool | ternary(omit, "/opt/assistant/bin/assistant") }}'
-      dest: /usr/local/bin/assistant
-      state: '{{ remove|bool | ternary("absent", "link") }}'
+- name: '{{ remove|bool | ternary("Remove", "Install latest") }} assistant'
+  package:
+    name: '{{ remove|bool | ternary("assistant", as_urls.rpm) }}'
+    state: '{{ remove|bool | ternary("absent", "present") }}'
   become: '{{ not got_root }}'
