@@ -1,4 +1,9 @@
 - block:
+  - name: Install pangox-compat
+    package:
+      name: pangox-compat
+      releasever: '32'
+    when: ansible_distribution == 'Fedora' and 33 <= ansible_distribution_major_version|int <= 34 and not remove|bool
   - name: '{{ remove|bool | ternary("Remove", "Add") }} {{ repo.description | default(package) }} repo'
     yum_repository:
       name: '{{ repo.name | default(package) }}'
