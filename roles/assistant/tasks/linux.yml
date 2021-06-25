@@ -5,6 +5,7 @@
       src: '{{ as_urls.archive }}'
       dest: '{{ as_unarchive_dir }}'
       remote_src: yes
+    register: as_installation
   when: not remove|bool
 - block:
   - name: 'Remove {{ as_dir }}'

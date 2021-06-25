@@ -6,9 +6,50 @@
         - '{{ ansible_distribution | lower }}.yml'
         - '{{ ansible_system | lower }}.yml'
       skip: true
-- name: '{{ "%s %s %s PATH" % remove|bool | ternary(("Remove", as_main_binary, "from"), ("Add", as_main_binary, "to")) }}'
-  file:
-    src: '{{ remove|bool | ternary(omit, as_main_binary) }}'
-    dest: /usr/local/bin/assistant
-    state: '{{ remove|bool | ternary("absent", "link") }}'
-  when: systemwide
+- name: Find a writable dir in PATH
+  block:
+  - stat:
+      path: '{{ item }}'
+    register: path_stat
+    loop: '{{ ansible_env.PATH.split(":") }}'
+  - set_fact:
+      as_main_binary_symlink_dir: "{{ path_stat.results | map(attribute = 'stat') | selectattr('exists') | selectattr('isdir') | selectattr('writeable') | map(attribute = 'path') | list | first | default('') }}"
+  when: not systemwide
+- name: Set symlink name
+  set_fact:
+    as_main_binary_symlink: '{{ as_main_binary_symlink_dir }}/{{ as_main_binary | basename }}'
+# Only remove an existing _broken_ symlink
+- name: 'Check if {{ as_main_binary_symlink }} can be safely removed'
+  block:
+  - stat:
+      path: '{{ as_main_binary_symlink }}'
+      follow: '{{ item }}'
+    loop:
+      - yes
+      - no
+    register: symlink_stat
+  - set_fact:
+      as_main_binary_symlink_remove: "{{ (symlink_stat.results
+        | rejectattr('invocation.module_args.follow')
+        | selectattr('stat.exists')
+        | rejectattr('stat.readable')
+        | rejectattr('stat.writeable')
+        | map(attribute = 'stat.exists')
+        | list | first | default(false))
+        and not (symlink_stat.results
+        | selectattr('invocation.module_args.follow')
+        | map(attribute = 'stat.exists')
+        | list | first | default(false)) }}" # Link itself exists, its target does not
+  when: remove|bool
+- block:
+  - name: '{{ "%s %s symlink %s %s" % remove|bool | ternary(("Remove", as_main_binary, "from", as_main_binary_symlink), ("Add", as_main_binary, "to", as_main_binary_symlink)) }}'
+    file:
+      src: '{{ remove|bool | ternary(omit, as_main_binary) }}'
+      dest: '{{ as_main_binary_symlink }}'
+      state: '{{ remove|bool | ternary("absent", "link") }}'
+    become: '{{ got_root | ternary(omit, true) }}'
+    register: symlink
+  rescue:
+    - debug:
+        var: as_installation
+  when: (remove|bool and as_main_binary_symlink_remove|bool) or not remove|bool
