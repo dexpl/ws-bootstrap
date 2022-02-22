@@ -48,6 +48,7 @@ pkgs:
   - xfce4-panel
   - xfce4-power-manager
   - xfce4-pulseaudio-plugin
+  - xfce4-screensaver
   - xfce4-screenshooter-plugin
   - xfce4-sensors-plugin
   - xfce4-terminal

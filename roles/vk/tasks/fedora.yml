@@ -3,6 +3,7 @@
     url: '{{ vk_pkg_url % (ansible_system | lower, vk_arch[ansible_architecture], "master", vk_pkg_fmt[ansible_pkg_mgr]) }}'
     dest: '{{ remove|bool | ternary(omit, (lookup("env", "TEMP") or lookup("env", "TMPDIR") or "/tmp") + "/") }}'
     method: '{{ remove|bool | ternary("HEAD", "GET") }}'
+  changed_when: false
   register: vk_pkg
 - block:
   - name: '{{ remove|bool | ternary("Remove", "Install") }} VK messenger'

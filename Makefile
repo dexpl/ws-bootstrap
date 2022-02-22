@@ -3,7 +3,7 @@ mainrole := ws
 # Simple role template
 stemplate := templates/_simple.yml.j2
 
-all: bootstrap
+all: ws $(roles)
 
 bootstrap:
 	ansible-playbook $@.yml
