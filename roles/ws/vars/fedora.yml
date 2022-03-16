@@ -43,6 +43,7 @@ pkgs:
   - perl-libwww-perl
   - perl-perlfaq
   - pmount
+  - rsync
   - remmina-plugins-rdp
   - samba-client
   - screen

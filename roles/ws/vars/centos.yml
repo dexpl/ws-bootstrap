@@ -31,6 +31,7 @@ pkgs:
   - perl-XML-XPath
   - perl-libwww-perl
   - pmount
+  - rsync
   - samba-client
   - screen
   - setxkbmap
