@@ -1,0 +1,50 @@
+---
+- hosts:
+    - localhost
+  become: true
+  vars:
+    cert_urls:
+      - https://gu-st.ru/content/Other/doc/russian_trusted_root_ca.cer
+      - https://gu-st.ru/content/Other/doc/russian_trusted_sub_ca.cer
+    cert_dirs:
+      - /etc/pki/ca-trust/source/anchors/
+      - /usr/local/share/ca-certificates
+  tasks:
+    - name: Ensure ca-certificates are up to date
+      package:
+        name:
+          - ca-certificates
+          - openssl
+        state: latest
+
+    - name: Install openssl from CentOS
+      package:
+        name:
+          - http://centos-mirror.rbc.ru/pub/centos/7.9.2009/updates/x86_64/Packages/openssl-1.0.2k-25.el7_9.x86_64.rpm
+          - http://centos-mirror.rbc.ru/pub/centos/7.9.2009/updates/x86_64/Packages/openssl-libs-1.0.2k-25.el7_9.x86_64.rpm
+      when: ansible_distribution == 'ROSA' and ansible_distribution_major_version|int == 7 and ansible_architecture == 'x86_64'
+
+    - block:
+      - name: 'Download certs into {{ cert_dirs[0] }}'
+        get_url:
+          url: '{{ item }}'
+          dest: '{{ cert_dirs[0] }}'
+          validate_certs: false
+        loop: '{{ cert_urls }}'
+        notify: Update ca trust
+        register: dl_certs_r
+      rescue:
+      - name: 'Download certs into {{ cert_dirs[-1] }}'
+        get_url:
+          url: '{{ item }}'
+          dest: '{{ cert_dirs[-1] }}/{{ item | basename }}.crt'
+          validate_certs: false
+        loop: '{{ cert_urls }}'
+        notify: Update ca certificates
+        register: dl_certs_r
+
+  handlers:
+    - name: Update ca trust
+      command: update-ca-trust extract
+    - name: Update ca certificates
+      command: update-ca-certificates

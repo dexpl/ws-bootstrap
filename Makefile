@@ -5,7 +5,9 @@ stemplate := templates/_simple.yml.j2
 
 all: ws $(roles)
 
-bootstrap:
+digital.gov.ru : digital.gov.ru.cert
+
+bootstrap digital.gov.ru.cert :
 	ansible-playbook $@.yml
 
 $(roles): %: %.yml
@@ -14,6 +16,6 @@ $(roles): %: %.yml
 %.yml: $(stemplate)
 	ansible localhost -a 'src=$(<F) dest=$@' -e rolename=$* -m template
 
-.PHONY: bootstrap $(roles)
+.PHONY: bootstrap digital.gov.ru digital.gov.ru.cert $(roles)
 
 .SILENT:
