@@ -4,7 +4,7 @@
       name: '{{ repo.name | default(package) }}'
       description: '{{ repo.description | default(package) }}'
       baseurl: '{{ repo.repo[ansible_pkg_mgr] }}'
-      gpgcheck: yes
+      gpgcheck: true
       gpgkey: '{{ repo.gpgkey }}'
       state: '{{ remove|bool | ternary("absent", "present") }}'
   - name: '{{ remove|bool | ternary("Remove", "Install") }} {{ package }}'

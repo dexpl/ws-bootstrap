@@ -5,6 +5,7 @@
     - files:
         - '{{ ansible_distribution | lower }}.yml'
       skip: true
+
 - block:
   - name: Include distro-specific tasks
     include_tasks: '{{ item }}'
@@ -12,32 +13,38 @@
       - files:
           - '{{ ansible_distribution | lower }}.yml'
         skip: true
+
   - name: Add extra repositories (via package manager)
     package:
       name: '{{ repopkgs | default([]) }}'
+
   - package:
       name: '{{ pkgs }}'
       state: latest
       enablerepo: '{{ repos2enable | default(omit) }}'
-      update_cache: yes
+      update_cache: true
+
   - package:
       name: '{{ extrapkgs | default([]) }}'
   become: '{{ not got_root }}'
+
 - name: Employer-specific tasks (if any)
   include_tasks: '{{ item }}'
   with_fileglob: 'emp/*.yml'
+
 - block:
   - name: Make room for git repos
     file:
       name: '{{ projects_dir }}'
       state: directory
+
   - name: Clone remote git repos
     git:
       repo: '{{ item }}'
       dest: '{{ projects_dir }}/{{ (item | basename | splitext)[0] }}'
-      accept_hostkey: yes
-      # setting update to yes overwrites local unpushed commits
-      update: no
+      accept_hostkey: true
+      # setting update to true overwrites local unpushed commits
+      update: false
     loop: '{{ gitrepos }}'
   tags:
     - gitrepos

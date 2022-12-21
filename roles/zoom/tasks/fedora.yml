@@ -8,7 +8,7 @@
     # it will definitely fail on i?86
     package:
       name: zoom
-      autoremove: '{{ remove|bool | ternary("yes", omit) }}'
+      autoremove: '{{ remove|bool | ternary(true, omit) }}'
       state: '{{ remove|bool | ternary("absent", "latest") }}'
   rescue:
   - name: Install zoom package

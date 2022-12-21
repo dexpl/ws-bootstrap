@@ -1,7 +1,7 @@
-remove: no
+remove: false
 systemwide: '{{ got_root }}'
 as_unarchive_dir: '{{ systemwide | ternary("/opt", ansible_env["HOME"]) }}'
 as_dir: '{{ as_unarchive_dir }}/assistant'
 as_main_binary: '{{ as_dir }}/bin/assistant'
 as_main_binary_symlink_dir: '/usr/local/bin'
-as_main_binary_symlink_remove: no
+as_main_binary_symlink_remove: false

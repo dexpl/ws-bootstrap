@@ -9,7 +9,7 @@
   - name: '{{ remove|bool | ternary("Remove", "Install") }} VK messenger'
     package:
       name: '{{ remove|bool | ternary(lookup("pipe", "rpm -qp --qf %{name} " + vk_pkg.url), vk_pkg.path) }}'
-      disable_gpg_check: yes
+      disable_gpg_check: true
       state: '{{ remove|bool | ternary("absent", "present") }}'
   # Sometimes there's newer version in a repo
   - name: Update VK messenger to the latest version

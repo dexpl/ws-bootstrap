@@ -4,7 +4,7 @@
     unarchive:
       src: '{{ as_urls.archive }}'
       dest: '{{ as_unarchive_dir }}'
-      remote_src: yes
+      remote_src: true
     register: as_installation
   when: not remove|bool
 - block:
