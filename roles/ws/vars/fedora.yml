@@ -73,5 +73,6 @@ pkgs:
   - xfce4-weather-plugin
   - xfce4-xkb-plugin
   - youtube-dl
+  - yt-dlp-bash-completion
   - zathura-bash-completion
   - zathura-plugins-all
