@@ -1,6 +1,5 @@
 ---
-- hosts:
-    - localhost
+- hosts: localhost
   become: true
   vars:
     cert_urls:
@@ -41,7 +40,6 @@
           validate_certs: false
         loop: '{{ cert_urls }}'
         notify: Update ca certificates
-        register: dl_certs_r
 
   handlers:
     - name: Update ca trust
