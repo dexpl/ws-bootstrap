@@ -16,6 +16,9 @@ $(roles): %: %.yml
 %.yml: $(stemplate)
 	ansible localhost -a 'src=$(<F) dest=$@' -e rolename=$* -m template
 
-.PHONY: bootstrap digital.gov.ru digital.gov.ru.cert $(roles)
+clean:
+	rm -fv $(roles:%=%.yml)
+
+.PHONY: clean bootstrap digital.gov.ru digital.gov.ru.cert
 
 .SILENT:
