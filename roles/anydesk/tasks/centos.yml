@@ -1,1 +1,28 @@
-fedora.yml
+- block:
+  - name: Install pangox-compat
+    package:
+      name: pangox-compat
+      releasever: '32'
+    when: ansible_distribution == 'Fedora' and 33 <= ansible_distribution_major_version|int <= 35 and not remove|bool
+
+  - name: '{{ remove|bool | ternary("Remove", "Add") }} {{ repo.description | default(package) }} repo'
+    yum_repository:
+      name: '{{ repo.name | default(package) }}'
+      description: '{{ repo.description }}'
+      baseurl: '{{ repo.repo[ansible_pkg_mgr] }}'
+      gpgcheck: true
+      gpgkey: '{{ repo.gpgkey }}'
+      state: '{{ remove|bool | ternary("absent", "present") }}'
+
+  - block:
+    - name: '{{ remove|bool | ternary("Remove", "Install") }} {{ package }}'
+      package:
+        name: '{{ package }}'
+        state: '{{ remove|bool | ternary("absent", "present") }}'
+        update_cache: true
+    rescue:
+      - name: A dirty hack
+        package:
+          name: http://rpm.anydesk.com/centos/x86_64/Packages/anydesk-6.2.1-1.el7.x86_64.rpm
+        when: not remove|bool
+  become: true
