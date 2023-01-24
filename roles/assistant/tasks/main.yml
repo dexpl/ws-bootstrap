@@ -22,7 +22,7 @@
   shell: >
     wget --output-document=- --quiet {{ assistant_dlurl }} |
     xmllint 2>/dev/null --html --xpath '(//a[contains(text(), "{{ assistant_pkg_fmt | upper }}")])[1]' - |
-    wget --base={{ assistant_baseurl }} --force-html --input-file=- --no-verbose --server-response --spider
+    wget --base={{ assistant_baseurl }} --force-html --input-file=- --no-verbose --spider
   changed_when: false
   failed_when: assistant_pkg_query_r.stderr == 'No URLs found in -.'
   register: assistant_pkg_query_r
