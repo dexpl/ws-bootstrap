@@ -3,15 +3,15 @@ mainrole := ws
 # Simple role template
 stemplate := templates/_simple.yml.j2
 
-all: ws $(roles)
+all: $(mainrole) digital.gov.ru $(roles)
 
 digital.gov.ru : digital.gov.ru.cert
 
 bootstrap digital.gov.ru.cert :
-	ansible-playbook $@.yml
+	ansible-playbook $(ANSIBLE_OPTS) $@.yml
 
 $(roles): %: %.yml
-	ansible-playbook $@.yml
+	ansible-playbook $(ANSIBLE_OPTS) $@.yml
 
 %.yml: $(stemplate)
 	ansible localhost -a 'src=$(<F) dest=$@' -e rolename=$* -m template
