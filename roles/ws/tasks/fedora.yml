@@ -1,3 +1,4 @@
+---
 - name: Cut the crap
   package:
     name: '{{ useless_crap | default([]) }}'
@@ -8,8 +9,10 @@
       name: distribution-gpg-keys
   - name: Add RPM Fusion GPG keys
     rpm_key:
-      key: '{{ item }}'
+      key: '{{ gpg_key }}'
     loop: "{{ query('fileglob', '/usr/share/distribution-gpg-keys/rpmfusion/RPM-GPG-KEY-rpmfusion-*{{ ansible_distribution_major_version }}*') }}"
+    loop_control:
+      loop_var: gpg_key
   - name: Add RPM Fusion itself
     package:
       name:
@@ -19,15 +22,19 @@
     - rpmfusion
 - name: Add repository GPG keys
   rpm_key:
-    key: '{{ item }}'
+    key: '{{ gpg_key }}'
   loop: '{{ gpgkeys | default([]) }}'
+  loop_control:
+    loop_var: gpg_key
 - name: Add extra repositories
   yum_repository:
-    name: '{{ item.name }}'
-    description: '{{ item.description | default(item.name) }}'
-    baseurl: '{{ item.baseurl | default(omit) }}'
-    metalink: '{{ item.metalink | default(omit) }}'
-    mirrorlist: '{{ item.mirrorlist | default(omit) }}'
-    gpgcheck: '{{ item.gpgkey is defined }}'
-    gpgkey: '{{ item.gpgkey | default(omit) }}'
+    name: '{{ repo.name }}'
+    description: '{{ repo.description | default(repo.name) }}'
+    baseurl: '{{ repo.baseurl | default(omit) }}'
+    metalink: '{{ repo.metalink | default(omit) }}'
+    mirrorlist: '{{ repo.mirrorlist | default(omit) }}'
+    gpgcheck: '{{ repo.gpgkey is defined }}'
+    gpgkey: '{{ repo.gpgkey | default(omit) }}'
   loop: '{{ extrarepos | default([]) }}'
+  loop_control:
+    loop_var: repo

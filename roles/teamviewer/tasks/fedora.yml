@@ -1,3 +1,4 @@
+---
 - block:
   - name: '{{ remove|bool | ternary("Remove", "Add") }} Teamviewer GPG key'
     rpm_key:

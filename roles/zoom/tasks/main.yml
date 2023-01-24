@@ -1,3 +1,4 @@
+---
 # TODO support not only Fedora
 - include_tasks: '{{ item }}'
   with_first_found:

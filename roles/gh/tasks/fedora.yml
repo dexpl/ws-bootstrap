@@ -1,3 +1,4 @@
+---
 - name: Check whether gh is installed
   package:
     list: '{{ gh.package }}'

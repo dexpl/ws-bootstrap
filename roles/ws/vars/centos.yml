@@ -1,3 +1,4 @@
+---
 # to be added with yum_repository
 extrarepos: []
 # to be installed from extrarepos

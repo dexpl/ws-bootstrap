@@ -1,3 +1,4 @@
+---
 remove: false
 assistant_baseurl: https://мойассистент.рф
 assistant_dlurl: '{{ assistant_baseurl }}/скачать'

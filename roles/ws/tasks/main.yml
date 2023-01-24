@@ -1,3 +1,4 @@
+---
 # TODO support not only Fedora
 - name: Include distro-specific vars
   include_vars: '{{ item }}'

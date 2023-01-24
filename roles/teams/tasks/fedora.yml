@@ -1,3 +1,4 @@
+---
 - block:
   - name: '{{ remove|bool | ternary("Remove", "Add") }} {{ repo.description | default(package) }} repo'
     yum_repository:

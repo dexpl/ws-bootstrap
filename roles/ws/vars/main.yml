@@ -1,3 +1,4 @@
+---
 gitrepos:
   - git@github.com:dexpl/dotfiles.git
   - git@github.com:dexpl/miscscripts.git

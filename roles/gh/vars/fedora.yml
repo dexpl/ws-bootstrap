@@ -1,3 +1,4 @@
+---
 pm_conf_mgr:
   command: dnf config-manager --add-repo '{{ gh.repo.url[ansible_pkg_mgr] }}'
   package: dnf-plugin-config-manager

@@ -1,3 +1,4 @@
+---
 package: anydesk
 repo:
   description: 'AnyDesk {{ ansible_distribution }} - stable'
