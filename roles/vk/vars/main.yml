@@ -1,2 +1,2 @@
 ---
-vk_pkg_url: 'https://desktop.userapi.com/rpm/master/vk-{{ vk_version }}.{{ ansible_architecture }}.rpm'
+vk_dlurl: https://desktop.userapi.com/rpm/master/

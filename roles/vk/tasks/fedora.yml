@@ -13,14 +13,23 @@
     msg: '{{ ansible_pkg_mgr }} is not supported by VK messenger'
   when: ansible_pkg_mgr not in ['yum', 'dnf', 'zypper']
 
-- block:
-  - name: 'Install VK messenger {{ vk_version }}'
-    package:
-      name: '{{ vk_pkg_url }}'
+- name: Install auxiliary packages
+  package:
+    name:
+      - /usr/bin/xmllint
+      - wget
+  become: true
 
-  # Sometimes there's newer version in a repo
-  - name: Update VK messenger to the latest version
-    package:
-      name: vk
-      state: latest
+- name: Find out the latest version of VK messenger
+  shell: >
+    wget --output-document=- --quiet {{ vk_dlurl }} |
+    xmllint 2>/dev/null --html --xpath '//a[contains(@href, "{{ ansible_architecture }}")][last()]' - |
+    wget --base={{ vk_dlurl }} --force-html --input-file=- --no-verbose --spider
+  changed_when: false
+  failed_when: vk_pkg_query_r.stderr == 'No URLs found in -.'
+  register: vk_pkg_query_r
+
+- name: Install VK messenger
+  package:
+    name: "{{ (vk_pkg_query_r.stderr_lines[-1]).split(' ')[3] }}"
   become: true
