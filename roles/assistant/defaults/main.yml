@@ -1,7 +1,10 @@
 remove: false
-systemwide: '{{ got_root }}'
-as_unarchive_dir: '{{ systemwide | ternary("/opt", ansible_env["HOME"]) }}'
-as_dir: '{{ as_unarchive_dir }}/assistant'
-as_main_binary: '{{ as_dir }}/bin/assistant'
-as_main_binary_symlink_dir: '/usr/local/bin'
-as_main_binary_symlink_remove: false
+assistant_baseurl: https://мойассистент.рф
+assistant_dlurl: '{{ assistant_baseurl }}/скачать'
+assistant_pkg_fmt: '{{ assistant_pkg_fmts[ansible_pkg_mgr] }}'
+assistant_pkg_fmts:
+  apt: deb
+  dnf: rpm
+  yum: rpm
+assistant_xmllint_pkg:
+  debian: libxml2-utils

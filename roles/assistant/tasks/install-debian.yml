@@ -1,0 +1,5 @@
+---
+- name: Install the package
+  apt:
+    deb: '{{ assistant_pkg_r.dest }}'
+  become: true

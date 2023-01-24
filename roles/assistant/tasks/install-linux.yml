@@ -1,0 +1,6 @@
+---
+- name: Install the package
+  package:
+    name: '{{ assistant_pkg_r.dest }}'
+    disable_gpg_check: true
+  become: true

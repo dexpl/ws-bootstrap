@@ -1,6 +1,0 @@
-- name: '{{ remove|bool | ternary("Remove", "Install latest") }} assistant'
-  package:
-    name: '{{ remove|bool | ternary("assistant", as_urls.rpm) }}'
-    state: '{{ remove|bool | ternary("absent", "present") }}'
-  become: '{{ got_root | ternary(omit, true) }}'
-  register: as_installation
