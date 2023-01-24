@@ -1,3 +1,4 @@
+---
 - block:
   - name: "{{ remove|bool | ternary('Remove', 'Add') }} zoom GPG key"
     rpm_key:
@@ -6,7 +7,8 @@
     loop:
       - https://zoom.us/linux/download/pubkey
       - https://zoom.us/linux/download/pubkey?version=5-12-6
-    loop_var: zoom_key
+    loop_control:
+      loop_var: zoom_key
 
   - name: "{{ remove|bool | ternary('Remove', 'Install the latest') }} zoom package"
     package:
