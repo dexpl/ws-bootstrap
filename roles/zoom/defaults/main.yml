@@ -1,1 +1,5 @@
 remove: false
+zoom_pkg_fmt:
+  apt: deb
+  dnf: rpm
+  yum: rpm
