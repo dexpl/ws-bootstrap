@@ -12,4 +12,4 @@
     package:
       name: https://download.teamviewer.com/download/linux/teamviewer.x86_64.rpm
     when: not remove|bool
-  become: '{{ not got_root }}'
+  become: true

@@ -11,4 +11,4 @@
       loop_var: repo
     register: repos
     changed_when: repo not in repos.stdout
-  become: '{{ not got_root }}'
+  become: true

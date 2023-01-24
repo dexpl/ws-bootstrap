@@ -16,4 +16,4 @@
     dnf:
       name: '{{ skype_stable }}'
     when: not remove|bool
-  become: '{{ not got_root }}'
+  become: true

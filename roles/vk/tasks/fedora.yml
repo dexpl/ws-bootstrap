@@ -17,4 +17,4 @@
       name: '{{ lookup("pipe", "rpm -qp --qf %{name} " + vk_pkg.path) }}'
       state: latest
     when: not remove|bool
-  become: '{{ not got_root }}'
+  become: true

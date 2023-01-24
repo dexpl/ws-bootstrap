@@ -11,4 +11,4 @@
     package:
       name: '{{ package }}'
       state: '{{ remove|bool | ternary("absent", "latest") }}'
-  become: '{{ not got_root }}'
+  become: true

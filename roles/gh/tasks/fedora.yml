@@ -24,6 +24,6 @@
       - name: Install gh
         package:
           name: '{{ gh.package }}'
-      become: '{{ not got_root }}'
+      become: true
     when: gh.repo.name not in repos.stdout_lines | map("regex_replace", "\s\s*.*")
   when: gh_package.results | length == 0
