@@ -1,8 +1,11 @@
 ---
 # useless crap to be removed
 useless_crap:
+  - dnfdragora
   - fedora-repos-modular
   - nano
+  - tracker
+  - tracker-miners
 # to be added with yum_repository
 extrarepos: []
 # to be installed from extrarepos
@@ -25,6 +28,7 @@ pkgs:
   - discount
   - elinks
   - firefox
+  - geeqie
   - git
   - gvfs-fuse
   - hub
@@ -32,6 +36,7 @@ pkgs:
   - langpacks-ru
   - libvirt-client
   - lightdm-gtk
+  - mplayer
   - openbox
   - p7zip-plugins
   - patch
@@ -73,6 +78,8 @@ pkgs:
   - xfce4-terminal
   - xfce4-weather-plugin
   - xfce4-xkb-plugin
+  - xmlstarlet
+  - xsetroot
   - youtube-dl
   - yt-dlp-bash-completion
   - zathura-bash-completion
