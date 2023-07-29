@@ -68,7 +68,6 @@ pkgs:
   - xclip
   - xfce4-appfinder
   - xfce4-battery-plugin
-  - xfce4-clipman-plugin
   - xfce4-notifyd
   - xfce4-panel
   - xfce4-power-manager
@@ -76,6 +75,7 @@ pkgs:
   - xfce4-screensaver
   - xfce4-screenshooter-plugin
   - xfce4-sensors-plugin
+  - xfce4-settings
   - xfce4-terminal
   - xfce4-weather-plugin
   - xfce4-xkb-plugin
