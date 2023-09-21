@@ -24,6 +24,6 @@
     rescue:
       - name: A dirty hack
         package:
-          name: http://rpm.anydesk.com/centos/x86_64/Packages/anydesk-6.2.1-1.el7.x86_64.rpm
+          name: 'http://rpm.anydesk.com/centos/{{ ansible_architecture }}/Packages/anydesk-{{ known_good_version }}.{{ ansible_architecture }}.rpm'
         when: not remove|bool
   become: true
