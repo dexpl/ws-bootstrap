@@ -1,0 +1,18 @@
+---
+# TODO support deb-based distros
+- meta: end_host
+  when: ansible_pkg_mgr not in ['dnf', 'yum']
+
+- block:
+  - name: "{{ yadisk_remove|bool | ternary('Remove', 'Add') }} Yandex.Disk GPG key"
+    rpm_key:
+      key: '{{ yadisk_gpg_key }}'
+      state: "{{ yadisk_remove|bool | ternary('absent', 'present') }}"
+
+  - name: "{{ yadisk_remove|bool | ternary('Remove', 'Install the latest') }} Yandex.Disk package"
+    package:
+      name: "{{ yadisk_remove|bool | ternary('yandex-disk', 'https://repo.yandex.ru/yandex-disk/yandex-disk-latest.%s.%s' % (ansible_architecture, yadisk_pkg_fmt[ansible_pkg_mgr])) }}"
+      autoremove: '{{ yadisk_remove|bool | ternary(true, omit) }}'
+      state: "{{ yadisk_remove|bool | ternary('absent', 'latest') }}"
+      update_cache: true
+  become: true
