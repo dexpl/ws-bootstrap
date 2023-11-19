@@ -1,19 +1,19 @@
 ---
 - block:
-  - name: "{{ remove|bool | ternary('Remove', 'Add') }} zoom GPG key"
+  - name: "{{ zoom_remove|bool | ternary('Remove', 'Add') }} zoom GPG key"
     rpm_key:
       key: '{{ zoom_key }}'
-      state: "{{ remove|bool | ternary('absent', 'present') }}"
+      state: "{{ zoom_remove|bool | ternary('absent', 'present') }}"
     loop:
       - https://zoom.us/linux/download/pubkey
       - https://zoom.us/linux/download/pubkey?version=5-12-6
     loop_control:
       loop_var: zoom_key
 
-  - name: "{{ remove|bool | ternary('Remove', 'Install the latest') }} zoom package"
+  - name: "{{ zoom_remove|bool | ternary('Remove', 'Install the latest') }} zoom package"
     package:
-      name: "{{ remove|bool | ternary('zoom', 'https://zoom.us/client/latest/zoom_%s.%s' % (ansible_architecture, zoom_pkg_fmt[ansible_pkg_mgr])) }}"
-      autoremove: '{{ remove|bool | ternary(true, omit) }}'
-      state: "{{ remove|bool | ternary('absent', 'latest') }}"
+      name: "{{ zoom_remove|bool | ternary('zoom', 'https://zoom.us/client/latest/zoom_%s.%s' % (ansible_architecture, zoom_pkg_fmt[ansible_pkg_mgr])) }}"
+      autoremove: '{{ zoom_remove|bool | ternary(true, omit) }}'
+      state: "{{ zoom_remove|bool | ternary('absent', 'latest') }}"
       update_cache: true
   become: true

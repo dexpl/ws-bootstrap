@@ -1,15 +1,15 @@
 ---
 - block:
-  - name: '{{ remove|bool | ternary("Remove", "Add") }} {{ repo.description | default(package) }} repo'
+  - name: '{{ teams_remove|bool | ternary("Remove", "Add") }} {{ teams_repo.description | default(teams_package) }} repo'
     yum_repository:
-      name: '{{ repo.name | default(package) }}'
-      description: '{{ repo.description | default(package) }}'
-      baseurl: '{{ repo.repo[ansible_pkg_mgr] }}'
+      name: '{{ teams_repo.name | default(teams_package) }}'
+      description: '{{ teams_repo.description | default(teams_package) }}'
+      baseurl: '{{ teams_repo.repo[ansible_pkg_mgr] }}'
       gpgcheck: true
-      gpgkey: '{{ repo.gpgkey }}'
-      state: '{{ remove|bool | ternary("absent", "present") }}'
-  - name: '{{ remove|bool | ternary("Remove", "Install") }} {{ package }}'
+      gpgkey: '{{ teams_repo.gpgkey }}'
+      state: '{{ teams_remove|bool | ternary("absent", "present") }}'
+  - name: '{{ teams_remove|bool | ternary("Remove", "Install") }} {{ teams_package }}'
     package:
-      name: '{{ package }}'
-      state: '{{ remove|bool | ternary("absent", "latest") }}'
+      name: '{{ teams_package }}'
+      state: '{{ teams_remove|bool | ternary("absent", "latest") }}'
   become: true

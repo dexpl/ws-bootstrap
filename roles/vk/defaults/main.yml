@@ -1,2 +1,2 @@
 ---
-remove: false
+vk_remove: '{{ remove | default(false) }}'

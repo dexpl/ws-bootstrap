@@ -1,6 +1,6 @@
 ---
-package: teams
-repo:
+teams_package: teams
+teams_repo:
   description: M$ Teams
   gpgkey: https://packages.microsoft.com/keys/microsoft.asc
   repo:

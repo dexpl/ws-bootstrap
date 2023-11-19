@@ -7,7 +7,7 @@
     become: true
 
   - meta: end_play
-  when: remove|bool
+  when: vk_remove|bool
 
 - fail:
     msg: '{{ ansible_pkg_mgr }} is not supported by VK messenger'

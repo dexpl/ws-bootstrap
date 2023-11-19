@@ -9,7 +9,7 @@
     become: true
 
   - meta: end_host
-  when: remove|bool
+  when: assistant_remove|bool
 
 - name: Install auxiliary packages
   package:

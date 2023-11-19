@@ -1,2 +1,2 @@
 ---
-remove: true
+teamviewer_remove: '{{ remove | default(true) }}'

@@ -1,2 +1,2 @@
 ---
-remove: false
+anydesk_remove: '{{ remove | default(false) }}'

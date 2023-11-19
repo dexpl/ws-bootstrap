@@ -1,5 +1,5 @@
 ---
-remove: false
+zoom_remove: '{{ remove | default(false) }}'
 zoom_pkg_fmt:
   apt: deb
   dnf: rpm

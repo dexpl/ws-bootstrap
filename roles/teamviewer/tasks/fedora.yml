@@ -1,16 +1,16 @@
 ---
 - block:
-  - name: '{{ remove|bool | ternary("Remove", "Add") }} Teamviewer GPG key'
+  - name: '{{ teamviewer_remove|bool | ternary("Remove", "Add") }} Teamviewer GPG key'
     rpm_key:
       key: http://linux.teamviewer.com/pubkey/currentkey.asc
-      state: '{{ remove|bool | ternary("absent", "present") }}'
-  - name: '{{ remove|bool | ternary("Remove", "Install latest") }} teamviewer'
+      state: '{{ teamviewer_remove|bool | ternary("absent", "present") }}'
+  - name: '{{ teamviewer_remove|bool | ternary("Remove", "Install latest") }} teamviewer'
     package:
       name: teamviewer
-      state: '{{ remove|bool | ternary("absent", "latest") }}'
+      state: '{{ teamviewer_remove|bool | ternary("absent", "latest") }}'
   rescue:
   - name: Install teamviewer
     package:
       name: https://download.teamviewer.com/download/linux/teamviewer.x86_64.rpm
-    when: not remove|bool
+    when: not teamviewer_remove|bool
   become: true

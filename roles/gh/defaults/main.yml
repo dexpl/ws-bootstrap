@@ -1,2 +1,2 @@
 ---
-remove: false
+gh_remove: '{{ remove | default(false) }}'

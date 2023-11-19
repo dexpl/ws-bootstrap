@@ -1,5 +1,4 @@
 ---
-remove: false
 assistant_baseurl: https://мойассистент.рф
 assistant_dlurl: '{{ assistant_baseurl }}/скачать'
 assistant_pkg_fmt: '{{ assistant_pkg_fmts[ansible_pkg_mgr] }}'
@@ -7,5 +6,6 @@ assistant_pkg_fmts:
   apt: deb
   dnf: rpm
   yum: rpm
+assistant_remove: '{{ remove | default(false) }}'
 assistant_xmllint_pkg:
   debian: libxml2-utils

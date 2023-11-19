@@ -1,2 +1,2 @@
 ---
-remove: false
+teams_remove: '{{ remove | default(false) }}'

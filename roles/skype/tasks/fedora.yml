@@ -1,14 +1,14 @@
 ---
 - block:
-  - name: '{{ remove|bool | ternary("Remove", "Add") }} Skype GPG key'
+  - name: '{{ skype_remove|bool | ternary("Remove", "Add") }} Skype GPG key'
     rpm_key:
       key: https://repo.skype.com/data/SKYPE-GPG-KEY
-      state: '{{ remove|bool | ternary("absent", "present") }}'
-  - name: '{{ remove|bool | ternary("Remove", "Install latest") }} skype'
+      state: '{{ skype_remove|bool | ternary("absent", "present") }}'
+  - name: '{{ skype_remove|bool | ternary("Remove", "Install latest") }} skype'
     dnf:
-      name: '{{ remove|bool | ternary("skype", "https://go.skype.com/skypeforlinux-64.rpm") }}'
-      state: '{{ remove|bool | ternary("absent", "present") }}'
-    ignore_errors: '{{ remove|bool }}'
+      name: '{{ skype_remove|bool | ternary("skype", "https://go.skype.com/skypeforlinux-64.rpm") }}'
+      state: '{{ skype_remove|bool | ternary("absent", "present") }}'
+    ignore_errors: '{{ skype_remove|bool }}'
     register: skype_latest
   rescue:
   - debug:
@@ -16,5 +16,5 @@
   - name: Install known good if latest is non-installable
     dnf:
       name: '{{ skype_stable }}'
-    when: not remove|bool
+    when: not skype_remove|bool
   become: true
