@@ -22,9 +22,22 @@
         state: '{{ anydesk_remove|bool | ternary("absent", "present") }}'
         update_cache: true
     rescue:
-      - name: A dirty hack prereqs.
-      - name: A dirty hack
-        package:
-          name: 'http://rpm.anydesk.com/centos/{{ ansible_architecture }}/Packages/anydesk-{{ anydesk_known_good_version }}.{{ ansible_architecture }}.rpm'
+      - block:
+        - name: A dirty hack prereqs.
+          rpm_key:
+            key: '{{ anydesk_repo.gpgkey }}'
+
+        - name: A dirty hack itself
+          package:
+            name: 'http://rpm.anydesk.com/centos/{{ ansible_architecture }}/Packages/anydesk-{{ anydesk_known_good_version }}.{{ ansible_architecture }}.rpm'
         when: not anydesk_remove|bool
+
+  - name: 'Disable {{ anydesk_service }} service'
+    service:
+      name: '{{ anydesk_service }}'
+      state: stopped
+      enabled: false
+    when:
+      - anydesk_disable_service|bool
+      - not anydesk_remove|bool
   become: true

@@ -1,2 +1,3 @@
 ---
 anydesk_remove: '{{ remove | default(false) }}'
+anydesk_disable_service: true

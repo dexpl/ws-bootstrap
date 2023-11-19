@@ -7,3 +7,4 @@ anydesk_repo:
   repo:
     dnf: http://rpm.anydesk.com/{{ ansible_distribution | lower }}/$basearch/
     yum: http://rpm.anydesk.com/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}/$basearch/
+anydesk_service: anydesk
