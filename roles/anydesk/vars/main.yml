@@ -1,6 +1,6 @@
 ---
 anydesk_package: anydesk
-anydesk_known_good_version: 6.3.0-1.el7
+anydesk_known_good_version: 6.3.2-1.el7
 anydesk_repo:
   description: 'AnyDesk {{ ansible_distribution }} - stable'
   gpgkey: https://keys.anydesk.com/repos/RPM-GPG-KEY

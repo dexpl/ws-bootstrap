@@ -27,9 +27,14 @@
           rpm_key:
             key: '{{ anydesk_repo.gpgkey }}'
 
-        - name: A dirty hack itself
-          package:
-            name: 'http://rpm.anydesk.com/centos/{{ ansible_architecture }}/Packages/anydesk-{{ anydesk_known_good_version }}.{{ ansible_architecture }}.rpm'
+        - block:
+          - name: A dirty hack itself
+            package:
+              name: 'http://rpm.anydesk.com/centos/{{ ansible_architecture }}/Packages/anydesk-{{ anydesk_known_good_version }}.{{ ansible_architecture }}.rpm'
+              disable_gpg_check: true
+          rescue:
+          - name: A dirtier one when all else fails
+            command: 'rpm -ihv --noverify http://rpm.anydesk.com/centos/{{ ansible_architecture }}/Packages/anydesk-{{ anydesk_known_good_version }}.{{ ansible_architecture }}.rpm'
         when: not anydesk_remove|bool
 
   - name: 'Disable {{ anydesk_service }} service'
