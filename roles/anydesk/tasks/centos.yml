@@ -4,7 +4,10 @@
     package:
       name: pangox-compat
       releasever: '32'
-    when: ansible_distribution == 'Fedora' and 33 <= ansible_distribution_major_version|int <= 35 and not anydesk_remove|bool
+    when:
+      - not anydesk_remove|bool
+      - ansible_distribution == 'Fedora'
+      - 33 <= ansible_distribution_major_version|int <= 35
 
   - name: '{{ anydesk_remove|bool | ternary("Remove", "Add") }} {{ anydesk_repo.description | default(anydesk_package) }} repo'
     yum_repository:
