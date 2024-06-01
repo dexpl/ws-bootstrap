@@ -4,4 +4,4 @@
   with_first_found:
     - files:
         - '{{ ansible_distribution | lower }}.yml'
-      skip: true
+        - empty.yml
