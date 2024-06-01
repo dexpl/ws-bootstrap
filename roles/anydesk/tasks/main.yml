@@ -8,4 +8,21 @@
   with_first_found:
     - files:
         - '{{ ansible_distribution | lower }}.yml'
-      skip: true
+        - empty.yml
+
+- block:
+  - name: 'Disable {{ anydesk_service }} autostart'
+    file:
+      path: '{{ item }}'
+      state: absent
+    loop: '{{ anydesk_autostart_files }}'
+    when: anydesk_disable_autostart|bool
+
+  - name: 'Disable {{ anydesk_service }} service'
+    service:
+      name: '{{ anydesk_service }}'
+      state: stopped
+      enabled: false
+    when: anydesk_disable_service|bool
+  when: not anydesk_remove|bool
+  become: true

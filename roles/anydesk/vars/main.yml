@@ -1,4 +1,7 @@
 ---
+anydesk_autostart_files:
+  - '/etc/xdg/autostart/anydesk.desktop'
+  - '/etc/xdg/autostart/anydesk_global_tray.desktop'
 anydesk_package: anydesk
 anydesk_known_good_version: 6.3.2-1.el7
 anydesk_repo:

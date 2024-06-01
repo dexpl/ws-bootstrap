@@ -39,13 +39,4 @@
           - name: A dirtier one when all else fails
             command: 'rpm -ihv --noverify http://rpm.anydesk.com/centos/{{ ansible_architecture }}/Packages/anydesk-{{ anydesk_known_good_version }}.{{ ansible_architecture }}.rpm'
         when: not anydesk_remove|bool
-
-  - name: 'Disable {{ anydesk_service }} service'
-    service:
-      name: '{{ anydesk_service }}'
-      state: stopped
-      enabled: false
-    when:
-      - anydesk_disable_service|bool
-      - not anydesk_remove|bool
   become: true
