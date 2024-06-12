@@ -38,3 +38,11 @@
     - 'install-{{ ansible_distribution | lower }}.yml'
     - 'install-{{ ansible_os_family | lower }}.yml'
     - 'install-{{ ansible_system | lower }}.yml'
+
+- name: 'Disable {{ assistant_service }} service'
+  service:
+    name: '{{ assistant_service }}'
+    state: stopped
+    enabled: false
+  become: true
+  when: assistant_disable_service

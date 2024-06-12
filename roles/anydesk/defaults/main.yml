@@ -1,4 +1,5 @@
 ---
 anydesk_remove: '{{ remove | default(false) }}'
-anydesk_disable_autostart: true
-anydesk_disable_service: '{{ anydesk_disable_autostart }}'
+anydesk_disable: '{{ disable | default(true) }}'
+anydesk_disable_autostart: '{{ anydesk_disable }}'
+anydesk_disable_service: '{{ anydesk_disable }}'
