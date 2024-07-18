@@ -4,6 +4,7 @@ useless_crap:
   - dnfdragora
   - fedora-repos-modular
   - nano
+  - libtracker-sparql
   - tracker
   - tracker-miners
 # to be added with yum_repository
@@ -23,6 +24,7 @@ pkgs:
   - NetworkManager-ssh-gnome
   - NetworkManager-strongswan-gnome
   - NetworkManager-vpnc-gnome
+  - acpi
   - catdoc
   - copr-cli
   - discount
@@ -36,7 +38,6 @@ pkgs:
   - langpacks-ru
   - libvirt-client
   - lightdm-gtk
-  - mplayer
   - openbox
   - p7zip-plugins
   - patch
@@ -54,7 +55,6 @@ pkgs:
   - samba-client
   - screen
   - setxkbmap
-  - telegram-desktop
   - thunderbird
   - usbutils
   - vim-X11
@@ -85,3 +85,7 @@ pkgs:
   - yt-dlp-bash-completion
   - zathura-bash-completion
   - zathura-plugins-all
+# to be added only when RPM Fusion repos are present
+rpmfusion_pkgs:
+  - mplayer
+  - telegram-desktop
