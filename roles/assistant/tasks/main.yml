@@ -45,4 +45,4 @@
     state: stopped
     enabled: false
   become: true
-  when: assistant_disable_service
+  when: assistant_disable_service|bool
