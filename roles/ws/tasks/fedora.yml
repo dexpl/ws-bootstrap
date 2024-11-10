@@ -8,7 +8,9 @@
 - name: Cut the crap (actually)
   package:
     name: '{{ useless_crap | default([]) }}'
+    autoremove: false
     state: absent
+  when: false
 
 - block:
   - name: Install distribution GPG keys
@@ -28,7 +30,7 @@
         - https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm
         - https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_major_version }}.noarch.rpm
 
-  - name: Add packages from RPM fusion
+  - name: Add packages from RPM Fusion
     package:
       name: '{{ pkgs }}'
       state: latest
