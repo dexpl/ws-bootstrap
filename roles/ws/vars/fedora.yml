@@ -80,6 +80,7 @@ pkgs:
   - xfce4-weather-plugin
   - xfce4-xkb-plugin
   - xmlstarlet
+  - xorg-x11-server-Xorg
   - xsetroot
   - youtube-dl
   - yt-dlp-bash-completion
