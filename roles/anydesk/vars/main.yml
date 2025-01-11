@@ -8,6 +8,7 @@ anydesk_repo:
   description: 'AnyDesk {{ ansible_distribution }} - stable'
   gpgkey: https://keys.anydesk.com/repos/RPM-GPG-KEY
   repo:
+    dnf5: http://rpm.anydesk.com/{{ ansible_distribution | lower }}/$basearch/
     dnf: http://rpm.anydesk.com/{{ ansible_distribution | lower }}/$basearch/
     yum: http://rpm.anydesk.com/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}/$basearch/
 anydesk_service: anydesk
