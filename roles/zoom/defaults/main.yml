@@ -3,4 +3,5 @@ zoom_remove: '{{ remove | default(false) }}'
 zoom_pkg_fmt:
   apt: deb
   dnf: rpm
+  dnf5: rpm
   yum: rpm
